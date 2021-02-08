@@ -9,6 +9,8 @@ const lockButton = document.querySelectorAll(".lock");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 const sliderContainers = document.querySelectorAll(".sliders");
 let initialColors;
+//This is for local storage
+let savedPalettes = [];
 
 //Event Listeners
 generateBtn.addEventListener("click", randomColors);
@@ -195,6 +197,28 @@ function copyToClipboard(hex) {
 function openAdjustmentPanel(index) {
   sliderContainers[index].classList.toggle("active");
   console.log("test");
+}
+
+//implement save to palette and local storage
+const saveBtn = document.querySelector(".save");
+const submitSave = document.querySelector(".submit-save");
+const closeSave = document.querySelector(".close-save");
+const saveContainer = document.querySelector(".save-container");
+const saveInput = document.querySelector(".save-container input");
+
+//event listeners
+saveBtn.addEventListener("click", openPalette);
+closeSave.addEventListener("click", closePalette);
+
+function openPalette(e) {
+  const popup = saveContainer.children[0];
+  saveContainer.classList.add("active");
+  popup.classList.add("active");
+}
+function closePalette(e) {
+  const popup = saveContainer.children[0];
+  saveContainer.classList.remove("active");
+  popup.classList.remove("active");
 }
 
 randomColors();
